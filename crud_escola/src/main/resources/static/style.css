@@ -1,0 +1,58 @@
+/* Estilos para o body */
+body {
+    font-family: 'Arial', sans-serif; /* Fonte padrão */
+    background-color: #f8f9fa; /* Cor de fundo */
+    color: #333; /* Cor do texto */
+    margin: 0;
+    padding: 0;
+}
+
+/* Estilos para o header */
+header {
+    background-color: #343a40; /* Cor de fundo do header */
+    padding: 10px 0;
+}
+
+.navbar-brand {
+    color: #fff; /* Cor do texto do brand */
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.navbar-nav .nav-link {
+    color: #fff; /* Cor do texto dos links do navbar */
+    font-size: 1.2rem;
+    margin-left: 15px;
+}
+
+.navbar-nav .nav-link:hover {
+    color: #ffc107; /* Cor do texto dos links do navbar ao passar o mouse */
+}
+
+/* Estilos para o conteúdo */
+.container {
+    margin-top: 20px;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    color: #333; /* Cor do texto do cabeçalho */
+}
+
+p {
+    line-height: 1.6; /* Altura da linha do parágrafo */
+}
+
+/* Estilos para o footer */
+footer {
+    text-align: center;
+    padding: 10px 0;
+    background-color: #343a40; /* Cor de fundo do footer */
+    color: #fff; /* Cor do texto do footer */
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
