@@ -7,13 +7,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
-public class indexController {
+public class IndexController {
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public ModelAndView abrirIndex() {
         ModelAndView mv = new ModelAndView("index");
 
-        String mensagem = "Olá, seja bem-vinda(o)!";
+        String mensagem = "Olá, seja bem-vindo(a)!";
         mv.addObject("msg", mensagem);
 
         return mv;
@@ -23,7 +23,7 @@ public class indexController {
     public ModelAndView buscarIndex(@RequestParam("buscar") String buscar) {
         ModelAndView mv = new ModelAndView("index");
 
-        String mensagem = "Resultado da Busca !";
+        String mensagem = "Resultado da Busca!";
         mv.addObject("msg", mensagem);
         mv.addObject("buscar", buscar);
 
@@ -31,4 +31,3 @@ public class indexController {
     }
 
 }
-
