@@ -6,12 +6,15 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 
 @Entity
-public class Administrador implements Serializable {
+public class Usuario implements Serializable {
+
     @Id
     private String cpf;
     private String nome;
     private String email;
     private String senha;
+    private String materias;
+    private String notas;
 
     public String getCpf() {
         return cpf;
@@ -43,6 +46,22 @@ public class Administrador implements Serializable {
 
     public void setSenha(String senha) {
         this.senha = senha;
+    }
+
+    public String getMaterias() {
+        return materias;
+    }
+
+    public void setMaterias(String materias) {
+        this.materias = materias;
+    }
+
+    public String getNotas() {
+        return notas;
+    }
+
+    public void setNotas(String notas) {
+        this.notas = notas;
     }
 
 }

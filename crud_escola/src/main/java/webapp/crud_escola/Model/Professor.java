@@ -6,7 +6,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 
 @Entity
-public class Administrador implements Serializable {
+public class Professor implements Serializable {
+
     @Id
     private String cpf;
     private String nome;
@@ -43,6 +44,11 @@ public class Administrador implements Serializable {
 
     public void setSenha(String senha) {
         this.senha = senha;
+    }
+
+    public static Professor findByCpf() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'findByCpf'");
     }
 
 }

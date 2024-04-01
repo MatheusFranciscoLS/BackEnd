@@ -5,7 +5,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import webapp.crud_escola.Model.Administrador;
-import webapp.crud_escola.Model.VerificaCadastroAdm;
 import webapp.crud_escola.Repository.AdministradorRepository;
 import webapp.crud_escola.Repository.VerificaCadastroAdmRepository;
 
