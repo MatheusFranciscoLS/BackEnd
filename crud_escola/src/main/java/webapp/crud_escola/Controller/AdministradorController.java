@@ -49,8 +49,6 @@ public class AdministradorController {
         }
         return mv;
     }
-    
-    
 
     @GetMapping("/interna-adm")
     public String acessoPageInternaAdm() {
@@ -59,10 +57,7 @@ public class AdministradorController {
         if (acessoInternoAdm) {
             acesso = "interna/interna-adm";
         } else {
-            acesso = "login/login-adm";
-            String mensagem = "Acesso não Permitido - faça Login";
-            System.out.println(mensagem);
-            mv.addObject("msg", mensagem);
+            acesso = "adm/login-adm";
             mv.addObject("classe", "vermelho");
         }
 
