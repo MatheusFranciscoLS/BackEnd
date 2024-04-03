@@ -41,6 +41,9 @@
                                         Cadastrar</a>
                                 </div>
                             </form>
+                            <div th:if="${classe == 'vermelho'}" role="alert" class="alert alert-danger mt-3">
+                                Login não realizado. Verifique suas credenciais.
+                            </div>
                         </div>
                     </div>
                 </div>

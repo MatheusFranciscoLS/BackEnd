@@ -31,24 +31,26 @@ public class AdministradorController {
     @PostMapping("acesso-adm")
     public ModelAndView acessoAdmLogin(@RequestParam String cpf,
             @RequestParam String senha) {
-        ModelAndView mv = new ModelAndView("interna/interna-adm");// página interna de acesso
-
+        ModelAndView mv = new ModelAndView();// página interna de acesso
+    
         boolean acessoCPF = cpf.equals(ar.findByCpf(cpf).getCpf());
         boolean acessoSenha = senha.equals(ar.findByCpf(cpf).getSenha());
-        if (acessoCPF && acessoSenha) {
+        if(acessoCPF && acessoSenha){
             String mensagem = "Login Realizado com sucesso";
             System.out.println(mensagem);
             acessoInternoAdm = true;
-            mv.addObject("msg", mensagem);
-            mv.addObject("classe", "verde");
+            mv.setViewName("redirect:/interna-adm");
         } else {
             String mensagem = "Login Não Efetuado";
             System.out.println(mensagem);
             mv.addObject("msg", mensagem);
             mv.addObject("classe", "vermelho");
+            mv.setViewName("adm/login-adm");
         }
         return mv;
     }
+    
+    
 
     @GetMapping("/interna-adm")
     public String acessoPageInternaAdm() {

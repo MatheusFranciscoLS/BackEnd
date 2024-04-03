@@ -5,6 +5,8 @@ import webapp.crud_escola.Model.Administrador;
 
 public interface AdministradorRepository extends CrudRepository<Administrador, String> {
     Administrador findByCpf(String cpf);
+
     Administrador findBySenha(String senha);
 
+    Administrador findByCpfAndSenha(String cpf, String senha);
 }
