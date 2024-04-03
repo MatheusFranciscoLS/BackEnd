@@ -41,9 +41,6 @@ public class AdministradorController {
             acessoInternoAdm = true;
             mv.setViewName("redirect:/interna-adm");
         } else {
-            String mensagem = "Login Não Efetuado";
-            System.out.println(mensagem);
-            mv.addObject("msg", mensagem);
             mv.addObject("classe", "vermelho");
             mv.setViewName("adm/login-adm");
         }
