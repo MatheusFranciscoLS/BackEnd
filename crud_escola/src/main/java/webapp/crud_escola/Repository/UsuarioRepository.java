@@ -6,4 +6,6 @@ import webapp.crud_escola.Model.Usuario;
 
 public interface UsuarioRepository extends CrudRepository<Usuario, String> {
 
+    Usuario findByCpf(String cpf);
+
 }
