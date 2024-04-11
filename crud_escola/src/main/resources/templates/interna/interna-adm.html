@@ -18,8 +18,11 @@
         <div th:if="${msg == null}" role="alert" class="alert alert-primary">
             Login Realizado com Sucesso
         </div>
-        <li><a th:href="@{/matricula-aluno}">Fazer Matrícula do Aluno</a></li>
+        <li><a th:href="@{/cadastrar-aluno}">Fazer Matrícula do Aluno</a></li>
         <li><a th:href="@{/cadastrar-professor}">Cadastrar Professor</a></li>
+        <form action="logout-adm" method="post">
+            <button type="submit">Sair</button>
+        </form>
 </body>
 
 </html>

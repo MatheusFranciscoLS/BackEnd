@@ -13,9 +13,8 @@ public class Usuario implements Serializable {
     private String nome;
     private String email;
     private String senha;
-    private String materias;
-    private String notas;
-
+    private String disciplina1;
+    private String disciplina2;
     public String getCpf() {
         return cpf;
     }
@@ -48,20 +47,20 @@ public class Usuario implements Serializable {
         this.senha = senha;
     }
 
-    public String getMaterias() {
-        return materias;
+    public String getDisciplina1() {
+        return disciplina1;
     }
 
-    public void setMaterias(String materias) {
-        this.materias = materias;
+    public void setDisciplina1(String disciplina1) {
+        this.disciplina1 = disciplina1;
     }
 
-    public String getNotas() {
-        return notas;
+    public String getDisciplina2() {
+        return disciplina2;
     }
 
-    public void setNotas(String notas) {
-        this.notas = notas;
+    public void setDisciplina2(String disciplina2) {
+        this.disciplina2 = disciplina2;
     }
 
 }

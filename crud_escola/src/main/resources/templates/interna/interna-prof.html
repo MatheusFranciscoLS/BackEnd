@@ -15,6 +15,10 @@
         <div th:if="${msg == null}" role="alert" class="alert alert-primary">
             Login Realizado com Sucesso
         </div>
+        <li><a th:href="@{/listar-alunos}">Verificar Alunos</a></li>
+        <form action="logout-prof" method="post">
+            <button type="submit">Sair</button>
+        </form>
 </body>
 
 </html>

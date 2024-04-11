@@ -15,6 +15,9 @@
         <div th:if="${msg == null}" role="alert" class="alert alert-primary">
             Login Realizado com Sucesso
         </div>
+        <form action="logout-usuario" method="post">
+            <button type="submit">Sair</button>
+        </form>
 </body>
 
 </html>

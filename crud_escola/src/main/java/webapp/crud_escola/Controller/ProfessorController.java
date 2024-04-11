@@ -6,60 +6,118 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import ch.qos.logback.core.model.Model;
 import webapp.crud_escola.Model.Professor;
+import webapp.crud_escola.Model.Usuario;
 import webapp.crud_escola.Repository.ProfessoresRepository;
 import webapp.crud_escola.Repository.VerificaCadastroProfRepository;
 
 @Controller
 public class ProfessorController {
     boolean acessoInternoProf = false;
+
     @Autowired
-    ProfessoresRepository ar;
+    ProfessoresRepository pr;
     @Autowired
     private VerificaCadastroProfRepository vcar;
 
-    @PostMapping("/cad-professor")
-    public String postCadProf(Professor prof) {
-        String cpfVerificar = vcar.findByCpf(prof.getCpf()).getCpf();
-        if (cpfVerificar.equals(prof.getCpf())) {
-            ar.save(prof);
+    @PostMapping("/cadastrar-professor")
+      public ModelAndView cadastroProfBD(Professor prof, RedirectAttributes attributes) {
+
+        boolean verificaCpf = vcar.existsById(prof.getCpf());
+
+        ModelAndView mv = new ModelAndView("redirect:/interna-adm");
+
+        if (verificaCpf) {
+            pr.save(prof);
+            String mensagem = "Cadastro Realizado com sucesso";
+            System.out.println(mensagem);
+            attributes.addFlashAttribute("msg", mensagem);
+            attributes.addFlashAttribute("classe", "vermelho");
+        } else {
+            String mensagem = "Cadastro Não Realizado";
+            System.out.println(mensagem);
+            attributes.addFlashAttribute("msg", mensagem);
+            attributes.addFlashAttribute("classe", "vermelho");
         }
-        return "professores/login-professor";
+
+        return mv;
     }
 
     @PostMapping("acesso-prof")
     public ModelAndView acessoProfLogin(@RequestParam String cpf,
-            @RequestParam String senha) {
-        ModelAndView mv = new ModelAndView();// página interna de acesso
-    
-        boolean acessoCPF = cpf.equals(ar.findByCpf(cpf).getCpf());
-        boolean acessoSenha = senha.equals(ar.findByCpf(cpf).getSenha());
-        if(acessoCPF && acessoSenha){
-            String mensagem = "Login Realizado com sucesso";
+            @RequestParam String senha,
+            RedirectAttributes attributes) {
+        ModelAndView mv = new ModelAndView("redirect:/interna-prof");// página interna de acesso
+        try {
+            boolean acessoCPF = pr.existsById(cpf);
+            boolean acessoSenha = senha.equals(pr.findByCpf(cpf).getSenha());
+
+            if (acessoCPF && acessoSenha) {
+                String mensagem = "Login Realizado com sucesso";
+                System.out.println(mensagem);
+                acessoInternoProf = true;
+                mv.addObject("msg", mensagem);
+                mv.addObject("classe", "verde");
+            } else {
+                String mensagem = "Login Não Efetuado";
+                System.out.println(mensagem);
+                attributes.addFlashAttribute("msg", mensagem);
+                attributes.addFlashAttribute("classe", "vermelho");
+                mv.setViewName("redirect:/login-professor");
+            }
+            
+        } catch (Exception e) {
+            String mensagem = "Login Não Efetuado";
             System.out.println(mensagem);
-            acessoInternoProf = true;
-            mv.setViewName("redirect:/interna-prof");
-        } else {
-            mv.addObject("classe", "vermelho");
-            mv.setViewName("professores/login-professor");
+            attributes.addFlashAttribute("msg", mensagem);
+            attributes.addFlashAttribute("classe", "vermelho");
+            mv.setViewName("redirect:/login-professor");
         }
         return mv;
     }
 
     @GetMapping("/interna-prof")
-    public String acessoPageInternaProf() {
-        ModelAndView mv = new ModelAndView();
-        String acesso = "";
+    public ModelAndView acessoPageInternaProf(RedirectAttributes attributes) {
+        ModelAndView mv = new ModelAndView("interna/interna-prof");
         if (acessoInternoProf) {
-            acesso = "interna/interna-prof";
+            System.out.println("Acesso Permitido");
         } else {
-            acesso = "professores/login-professor";
-            mv.addObject("classe", "vermelho");
+            String mensagem = "Acesso não Permitido - faça Login";
+            System.out.println(mensagem);
+            mv.setViewName("redirect:/login-professor");
+            attributes.addFlashAttribute("msg", mensagem);
+            attributes.addFlashAttribute("classe", "vermelho");
         }
 
-        return acesso;
+        return mv;
     }
+
+
+     @GetMapping("/listar-alunos")
+    public String listarAlunos(Model model, @RequestParam("cpf") String cpfProfessor) {
+        Professor professor = pr.findByCpf(cpfProfessor);
+        if (professor == null) {
+            // Tratar o caso em que o professor não foi encontrado
+            return "error"; // ou uma página de erro específica
+        }
+
+        List<Usuario> alunos = ur.findByDisciplina1OrDisciplina2(professor.getDisciplina(), professor.getDisciplina());
+        model.addAttribute("alunos", alunos);
+        return "listar-alunos";
+    }
+
+    @PostMapping("logout-prof")
+    public ModelAndView logoutProf(RedirectAttributes attributes) {
+        ModelAndView mv = new ModelAndView("redirect:/login-professor");
+        attributes.addFlashAttribute("msg", "Logout Efetuado");
+        attributes.addFlashAttribute("classe", "verde");
+        acessoInternoProf = false;
+        return mv;
+    }
+
 }
 
 

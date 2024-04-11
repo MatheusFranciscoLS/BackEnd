@@ -44,27 +44,16 @@ public class IndexController {
         return mv;
     }
 
-    @GetMapping("/cad-professor") // endereço da pagina no site
+    @GetMapping("/cadastro-professor") // endereço da pagina no site
     public ModelAndView abrirCadProf() {
-        ModelAndView mv = new ModelAndView("professores/cad-professor");
+        ModelAndView mv = new ModelAndView("adm/cadastro-professor");
         return mv;
     }
 
-    @GetMapping("/cad-usuario") // endereço da pagina no site
-    public ModelAndView abrirCadUsuario() {
-        ModelAndView mv = new ModelAndView("usuarios/cad-usuario");
+    @GetMapping("/cadastro-aluno") // endereço da pagina no site
+    public ModelAndView abrirCadAluno() {
+        ModelAndView mv = new ModelAndView("adm/cadastro-aluno");
         return mv;
     }
 
-    @GetMapping("/professor") // endereço da pagina no site
-    public ModelAndView abrirProf() {
-        ModelAndView mv = new ModelAndView("professores/professor");
-        return mv;
-    }
-
-    @GetMapping("/usuario") // endereço da pagina no site
-    public ModelAndView abrirUsuario() {
-        ModelAndView mv = new ModelAndView("usuario");
-        return mv;
-    }
 }

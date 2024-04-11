@@ -11,6 +11,7 @@ public class Professor implements Serializable {
     @Id
     private String cpf;
     private String nome;
+    private String disciplina;
     private String email;
     private String senha;
 
@@ -28,6 +29,14 @@ public class Professor implements Serializable {
 
     public void setNome(String nome) {
         this.nome = nome;
+    }
+
+    public String getDisciplina() {
+        return disciplina;
+    }
+
+    public void setDisciplina(String disciplina) {
+        this.disciplina = disciplina;
     }
 
     public String getEmail() {
@@ -50,5 +59,6 @@ public class Professor implements Serializable {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'findByCpf'");
     }
+
 
 }
