@@ -36,13 +36,17 @@
                                 </div>
                                 <div class="form-group">
                                     <input type="password" class="form-control" placeholder="Senha" name="senha" required>
-                                </div>
-                                <div class="form-group">
-                                    <input type="password" class="form-control" placeholder="Confirmar Senha" required>
-                                </div>
+                                </div>                           
                                 <button type="submit" class="btn btn-block btn-register"><i
                                         class="fas fa-user-plus"></i> Cadastrar</button>
                             </form>
+                            <div th:if="${classe == 'verde'}" role="alert" class="alert alert-success mt-3">
+                                <span th:text="${msg}"></span>
+                            </div>
+                            <div th:if="${classe == 'vermelho'}" role="alert" class="alert alert-danger mt-3">
+                                <span>Cadastro não realizado. Verifique se o CPF já foi liberado para Cadastro.</span>
+                            </div>                            
+                            </div>              
                         </div>
                     </div>
                 </div>

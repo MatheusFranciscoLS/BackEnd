@@ -35,12 +35,13 @@ public class ProfessorController {
             String mensagem = "Cadastro Realizado com sucesso";
             System.out.println(mensagem);
             attributes.addFlashAttribute("msg", mensagem);
-            attributes.addFlashAttribute("classe", "vermelho");
+            attributes.addFlashAttribute("classe", "verde");
         } else {
             String mensagem = "Cadastro Não Realizado";
             System.out.println(mensagem);
             attributes.addFlashAttribute("msg", mensagem);
             attributes.addFlashAttribute("classe", "vermelho");
+            mv.setViewName("redirect:/cadastrar-professor");
         }
 
         return mv;
@@ -96,18 +97,18 @@ public class ProfessorController {
     }
 
 
-     @GetMapping("/listar-alunos")
-    public String listarAlunos(Model model, @RequestParam("cpf") String cpfProfessor) {
-        Professor professor = pr.findByCpf(cpfProfessor);
-        if (professor == null) {
-            // Tratar o caso em que o professor não foi encontrado
-            return "error"; // ou uma página de erro específica
-        }
+    //  @GetMapping("/listar-alunos")
+    // public String listarAlunos(Model model, @RequestParam("cpf") String cpfProfessor) {
+    //     Professor professor = pr.findByCpf(cpfProfessor);
+    //     if (professor == null) {
+    //         // Tratar o caso em que o professor não foi encontrado
+    //         return "error"; // ou uma página de erro específica
+    //     }
 
-        List<Usuario> alunos = ur.findByDisciplina1OrDisciplina2(professor.getDisciplina(), professor.getDisciplina());
-        model.addAttribute("alunos", alunos);
-        return "listar-alunos";
-    }
+    //     List<Usuario> alunos = ur.findByDisciplina1OrDisciplina2(professor.getDisciplina(), professor.getDisciplina());
+    //     model.addAttribute("alunos", alunos);
+    //     return "listar-alunos";
+    // }
 
     @PostMapping("logout-prof")
     public ModelAndView logoutProf(RedirectAttributes attributes) {

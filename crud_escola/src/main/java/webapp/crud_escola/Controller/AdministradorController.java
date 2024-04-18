@@ -22,24 +22,25 @@ public class AdministradorController {
     @Autowired
     private VerificaCadastroAdmRepository vcar;
 
-    @PostMapping("/cad-adm")
+    @PostMapping("cad-adm")
     public ModelAndView cadastroAdmBD(Administrador adm, RedirectAttributes attributes) {
 
         boolean verificaCpf = vcar.existsById(adm.getCpf());
 
-        ModelAndView mv = new ModelAndView("redirect:/cad-adm");
+        ModelAndView mv = new ModelAndView("redirect:/login-adm");
 
         if (verificaCpf) {
             ar.save(adm);
             String mensagem = "Cadastro Realizado com sucesso";
             System.out.println(mensagem);
             attributes.addFlashAttribute("msg", mensagem);
-            attributes.addFlashAttribute("classe", "vermelho");
+            attributes.addFlashAttribute("classe", "verde");
         } else {
             String mensagem = "Cadastro Não Realizado";
             System.out.println(mensagem);
             attributes.addFlashAttribute("msg", mensagem);
             attributes.addFlashAttribute("classe", "vermelho");
+            mv.setViewName("redirect:/cad-adm");
         }
 
         return mv;
@@ -68,7 +69,7 @@ public class AdministradorController {
                 attributes.addFlashAttribute("classe", "vermelho");
                 mv.setViewName("redirect:/login-adm");
             }
-            
+
         } catch (Exception e) {
             String mensagem = "Login Não Efetuado";
             System.out.println(mensagem);
