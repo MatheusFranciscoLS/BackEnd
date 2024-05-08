@@ -95,20 +95,6 @@ public class ProfessorController {
         return mv;
     }
 
-
-     @GetMapping("/listar-alunos")
-    public String listarAlunos(Model model, @RequestParam("cpf") String cpfProfessor) {
-        Professor professor = pr.findByCpf(cpfProfessor);
-        if (professor == null) {
-            // Tratar o caso em que o professor não foi encontrado
-            return "error"; // ou uma página de erro específica
-        }
-
-        List<Usuario> alunos = ur.findByDisciplina1OrDisciplina2(professor.getDisciplina(), professor.getDisciplina());
-        model.addAttribute("alunos", alunos);
-        return "listar-alunos";
-    }
-
     @PostMapping("logout-prof")
     public ModelAndView logoutProf(RedirectAttributes attributes) {
         ModelAndView mv = new ModelAndView("redirect:/login-professor");
