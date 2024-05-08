@@ -94,8 +94,6 @@ public class ProfessorController {
         return mv;
     }
 
-<<<<<<< HEAD
-=======
 
     //  @GetMapping("/listar-alunos")
     // public String listarAlunos(Model model, @RequestParam("cpf") String cpfProfessor) {
@@ -110,7 +108,6 @@ public class ProfessorController {
     //     return "listar-alunos";
     // }
 
->>>>>>> e29f8dea3fe9a25b7dcc07decda7e6730ae2a2b0
     @PostMapping("logout-prof")
     public ModelAndView logoutProf(RedirectAttributes attributes) {
         ModelAndView mv = new ModelAndView("redirect:/login-professor");
