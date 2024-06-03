@@ -4,7 +4,6 @@ Tecnologia PHP
 
 Responsaveis (Professores)
 
-
 NOME VARCHAR(255) NOT NULL,
 EMAIL VARCHAR(255) NOT NULL UNIQUE
 
